@@ -1,8 +1,29 @@
 var ReplyBox = require('../components/replyBox');
 
+var MessagesStore = require('../stores/messages');
 var UserStore = require('../stores/user');
 
 var Utils = require('../utils');
+
+var MessageBox = React.createClass({
+	getInitialState: function() {
+		return MessagesStore.getChatByUserID(MessagesStore.getOpenChatUserID());
+	},
+	render: function() {
+		// ommited logic
+
+		return (
+			<div className="message-box">
+				<ul className="message-box__list">
+					{ messages }
+				</ul>
+				<ReplyBox />
+			</div>
+		);
+	}
+});
+
+module.exports = MessageBox;
 
 var MessageBox = React.createClass({
 	getInitialState: function () {
